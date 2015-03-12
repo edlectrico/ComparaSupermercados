@@ -53,6 +53,11 @@ public class Utils {
                                 final String secondLevelElement = secondLevelElements.get(j).attr("title");
                                 secondLevelCategories.add(secondLevelElement);
                                 Log.d("secondLevelElement", secondLevelElement);
+
+                                // TODO:
+                                // Third level categories have to be fetched from URL_EROSKI_BASE +
+                                // + Category's code + "/" Element's code + "/", for example
+                                // www.compraonline.grupoeroski.com/supermercado/2059698-Alimentos-Frescos/2059699-Frutas/
                             }
                         }
 

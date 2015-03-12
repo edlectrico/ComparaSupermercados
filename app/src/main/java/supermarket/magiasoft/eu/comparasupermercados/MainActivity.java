@@ -7,11 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
-import org.json.JSONObject;
-
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
-    private static final String URL_EROSKI = "http://www.compraonline.grupoeroski.com/supermercado/home.jsp";
+    private static final String URL_EROSKI_BASE = "http://www.compraonline.grupoeroski.com/supermercado/";
+    private static final String URL_EROSKI_MAIN = "home.jsp";
 
     private ImageButton buttonEroski;
 
@@ -25,7 +24,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         buttonEroski.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchEroski(v, URL_EROSKI);
+                launchEroski(v, URL_EROSKI_BASE + URL_EROSKI_MAIN);
             }
         });
     }
@@ -35,7 +34,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         //return productCategories;
 
-        Utils.parseURL(URL_EROSKI);
+        Utils.parseURL(url);
     }
 
 
