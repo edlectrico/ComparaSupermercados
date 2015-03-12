@@ -4,14 +4,38 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 
+import org.json.JSONObject;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements View.OnClickListener{
+
+    private static final String URL_EROSKI = "http://www.compraonline.grupoeroski.com/supermercado/home.jsp";
+
+    private ImageButton buttonEroski;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        buttonEroski = (ImageButton) findViewById(R.id.eroskiButton);
+
+        buttonEroski.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchEroski(v, URL_EROSKI);
+            }
+        });
+    }
+
+    public void launchEroski(View v, String url){
+        //final JSONObject productCategories = Utils.parseURL(URL_EROSKI);
+
+        //return productCategories;
+
+        Utils.parseURL(URL_EROSKI);
     }
 
 
@@ -35,5 +59,11 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
