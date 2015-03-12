@@ -38,11 +38,20 @@ public class Utils {
                     //System.out.println("title : " + title);
 
                     final Element element = doc.getElementsByClass("navmenu").get(0);
-                    Log.d("Element", element.toString());
+                    //Log.d("Element", element.toString());
 
                     // get the main categories
                     final Elements elements = element.getElementsByClass("doblelinea");
-                    Log.d("Elements", elements.toString());
+                    //Log.d("Elements", elements.toString());
+
+                    String description = doc.select("a[class=doblelinea]").get(0).attr("title");
+                    System.out.println("Meta description : " + description);
+
+                    /*Elements mainCategories;
+                    for (Element e : elements){
+                        mainCategories.add(e.getElementsByClass("doblelinea").text());
+                    }*/
+
 
                 } catch (IOException e) {
                     e.printStackTrace();
