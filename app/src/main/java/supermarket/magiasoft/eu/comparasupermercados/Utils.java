@@ -1,22 +1,15 @@
 package supermarket.magiasoft.eu.comparasupermercados;
 
-import android.text.Html;
 import android.util.Log;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by edlectrico on 11/03/15.
@@ -44,14 +37,35 @@ public class Utils {
                     final Elements elements = element.getElementsByClass("doblelinea");
                     //Log.d("Elements", elements.toString());
 
-                    String description = doc.select("a[class=doblelinea]").get(0).attr("title");
-                    System.out.println("Meta description : " + description);
+                    List<String> mainCategories = new ArrayList<String>();
+                    List<String> secondLevelCategories = new ArrayList<String>();
 
-                    /*Elements mainCategories;
-                    for (Element e : elements){
-                        mainCategories.add(e.getElementsByClass("doblelinea").text());
-                    }*/
+                    boolean secondLevelFilled = false;
 
+                    for (int i = 0; i < elements.size(); i++){
+                        final String mainCategory = doc.select("a[class=doblelinea]").get(i).attr("title");
+                        mainCategories.add(mainCategory);
+
+                        if (!secondLevelFilled){
+                            Elements secondLevelElements = element.getElementsByAttributeValueContaining("href", "/supermercado/2059698-Alimentos-Frescos/");
+
+                            for (int j = 1; j < secondLevelElements.size(); j++){
+                                final String secondLevelElement = secondLevelElements.get(j).attr("title");
+                                secondLevelCategories.add(secondLevelElement);
+                                Log.d("secondLevelElement", secondLevelElement);
+                            }
+                        }
+
+
+
+
+
+//                        Log.d("secondLevelTitles", secondLevelElements.toString());
+//                        for (Element e : secondLevelElements){
+//                            Elements secondLevelTitles = e.getElementsByAttribute("title");
+//                            Log.d("secondLevelTitles", secondLevelTitles.toString());
+//                        }
+                    }
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -61,7 +75,6 @@ public class Utils {
         }.start();
 
     }
-
 
     private void buildCategoriesHierarchy(final String htmlStringContent){
         final String INITIAL_TAG = "Alimentos Frescos";  //Tag from which we will create the hierarchy
