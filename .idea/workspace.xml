@@ -39,31 +39,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1332">
-              <caret line="11" column="47" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.2890511" vertical-offset="0" max-vertical-offset="1404">
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#820#1004#0" expanded="true" />
-                <element signature="e#993#994#0" expanded="true" />
+                <element signature="e#867#1051#0" expanded="true" />
+                <element signature="e#1040#1041#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Utils.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Utils.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70386904" vertical-offset="553" max-vertical-offset="1710">
-              <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="15" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#414#3033#0" expanded="true" />
+                <element signature="e#414#2667#0" expanded="true" />
                 <element signature="e#1166#1174#0" expanded="true" />
                 <element signature="e#1248#1256#0" expanded="true" />
-                <element signature="e#3022#3023#0" expanded="true" />
+                <element signature="e#2656#2657#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -630,8 +630,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/Utils.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -1138,7 +1138,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/Utils.java</url>
-          <line>74</line>
+          <line>64</line>
           <properties />
           <option name="timeStamp" value="28" />
         </line-breakpoint>
@@ -1159,8 +1159,8 @@
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#820#1004#0" expanded="true" />
-            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#867#1051#0" expanded="true" />
+            <element signature="e#1040#1041#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1171,8 +1171,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#820#1004#0" expanded="true" />
-            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#867#1051#0" expanded="true" />
+            <element signature="e#1040#1041#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1246,28 +1246,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1332">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1440">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="15" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#820#1004#0" expanded="true" />
-            <element signature="e#993#994#0" expanded="true" />
+            <element signature="e#414#2667#0" expanded="true" />
+            <element signature="e#1166#1174#0" expanded="true" />
+            <element signature="e#1248#1256#0" expanded="true" />
+            <element signature="e#2656#2657#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/Utils.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/supermarket/magiasoft/eu/comparasupermercados/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70386904" vertical-offset="553" max-vertical-offset="1710">
-          <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.2890511" vertical-offset="0" max-vertical-offset="1404">
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#414#3033#0" expanded="true" />
-            <element signature="e#1166#1174#0" expanded="true" />
-            <element signature="e#1248#1256#0" expanded="true" />
-            <element signature="e#3022#3023#0" expanded="true" />
+            <element signature="e#867#1051#0" expanded="true" />
+            <element signature="e#1040#1041#0" expanded="true" />
           </folding>
         </state>
       </provider>

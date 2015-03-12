@@ -7,6 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+/**
+ * Created by edlectrico on 11/03/15.
+ */
+
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
     private static final String URL_EROSKI_BASE = "http://www.compraonline.grupoeroski.com/supermercado/";

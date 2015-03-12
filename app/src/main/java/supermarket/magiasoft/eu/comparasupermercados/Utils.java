@@ -60,16 +60,6 @@ public class Utils {
                                 // www.compraonline.grupoeroski.com/supermercado/2059698-Alimentos-Frescos/2059699-Frutas/
                             }
                         }
-
-
-
-
-
-//                        Log.d("secondLevelTitles", secondLevelElements.toString());
-//                        for (Element e : secondLevelElements){
-//                            Elements secondLevelTitles = e.getElementsByAttribute("title");
-//                            Log.d("secondLevelTitles", secondLevelTitles.toString());
-//                        }
                     }
 
                 } catch (IOException e) {
@@ -81,9 +71,4 @@ public class Utils {
 
     }
 
-    private void buildCategoriesHierarchy(final String htmlStringContent){
-        final String INITIAL_TAG = "Alimentos Frescos";  //Tag from which we will create the hierarchy
-
-
-    }
 }
