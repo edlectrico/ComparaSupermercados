@@ -4,8 +4,8 @@
     <string name="app_name">ComparaSupermercados</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     <string name="test">Test String</string>
     <string name="eroski">Eroski</string>
+    <string name="title_activity_main_categories">MainCategories</string>
 
 </resources>

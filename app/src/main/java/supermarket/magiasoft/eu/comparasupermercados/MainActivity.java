@@ -1,11 +1,14 @@
 package supermarket.magiasoft.eu.comparasupermercados;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+
+import supermarket.magiasoft.eu.comparasupermercados.activities.MainCategories;
 
 /**
  * Created by edlectrico on 11/03/15.
@@ -39,6 +42,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         //return productCategories;
 
         Utils.parseURL(url);
+
+        startActivity(new Intent(this, MainCategories.class));
     }
 
 
