@@ -7,5 +7,6 @@
     <string name="test">Test String</string>
     <string name="eroski">Eroski</string>
     <string name="title_activity_main_categories">MainCategories</string>
+    <string name="loading_message_dialog">Loading... Please wait</string>
 
 </resources>

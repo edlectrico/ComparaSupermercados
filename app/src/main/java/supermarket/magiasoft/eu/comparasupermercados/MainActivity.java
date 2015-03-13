@@ -14,7 +14,7 @@ import supermarket.magiasoft.eu.comparasupermercados.activities.MainCategories;
  * Created by edlectrico on 11/03/15.
  */
 
-public class MainActivity extends ActionBarActivity implements View.OnClickListener{
+public class MainActivity extends ActionBarActivity {
 
     private static final String URL_EROSKI_BASE = "http://www.compraonline.grupoeroski.com/supermercado/";
     private static final String URL_EROSKI_MAIN = "home.jsp";
@@ -37,15 +37,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
 
     public void launchEroski(View v, String url){
-        //final JSONObject productCategories = Utils.parseURL(URL_EROSKI);
-
-        //return productCategories;
-
         Utils.parseURL(url);
 
         startActivity(new Intent(this, MainCategories.class));
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -69,9 +64,4 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }
