@@ -16,8 +16,9 @@ import java.util.List;
  */
 public class Utils {
 
-    static public void parseURL(final String url) {
+    static public List<String> parseURL(final String url) {
         Document doc;
+        List<String> mainCategories = null;
         try {
 
             // need http protocol
@@ -34,7 +35,7 @@ public class Utils {
             final Elements elements = element.getElementsByClass("doblelinea");
             //Log.d("Elements", elements.toString());
 
-            List<String> mainCategories = new ArrayList<String>();
+            mainCategories = new ArrayList<String>();
             List<String> secondLevelCategories = new ArrayList<String>();
 
             boolean secondLevelFilled = false;
@@ -63,6 +64,7 @@ public class Utils {
             e.printStackTrace();
         }
 
+        return mainCategories;
 
     }
 

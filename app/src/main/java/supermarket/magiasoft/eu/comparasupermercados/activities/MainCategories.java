@@ -1,5 +1,6 @@
 package supermarket.magiasoft.eu.comparasupermercados.activities;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -27,15 +28,9 @@ public class MainCategories extends ActionBarActivity {
 
         mainCategories = (ListView) findViewById(R.id.list_main_categories);
 
-        String[] values = new String[] { "Android List View",
-                "Adapter implementation",
-                "Simple List View In Android",
-                "Create List View Android",
-                "Android Example",
-                "List View Source Code",
-                "List View Array Adapter",
-                "Android Example List View"
-        };
+        Intent intent = getIntent();
+        final String[] categories = intent.getExtras().getStringArray("maincategories");
+
         // Define a new Adapter
         // First parameter - Context
         // Second parameter - Layout for the row
@@ -43,7 +38,7 @@ public class MainCategories extends ActionBarActivity {
         // Forth - the Array of data
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, values);
+                android.R.layout.simple_list_item_1, android.R.id.text1, categories);
 
 
         // Assign adapter to ListView

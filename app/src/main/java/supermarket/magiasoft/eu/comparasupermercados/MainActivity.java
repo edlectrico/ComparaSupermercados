@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.List;
+
 import supermarket.magiasoft.eu.comparasupermercados.activities.MainCategories;
 
 /**
@@ -44,7 +46,14 @@ public class MainActivity extends ActionBarActivity {
 
     class ProductCategoriesFetcher extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... urls) {
-            Utils.parseURL(urls[0]);
+            final List<String> mainCategories = Utils.parseURL(urls[0]);
+            String[] categories = new String[mainCategories.size()];
+
+            for (int i = 0; i < mainCategories.size(); i++){
+                categories[i] = mainCategories.get(i);
+            }
+
+            intent.putExtra("maincategories", categories);
 
             return "Executed";
         }
@@ -59,10 +68,6 @@ public class MainActivity extends ActionBarActivity {
         dialog = ProgressDialog.show(MainActivity.this, "", getResources().getString(R.string.loading_message_dialog), true);
         dialog.show();
     }
-
-//    public void launchEroski(String url){
-//        Utils.parseURL(url);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
