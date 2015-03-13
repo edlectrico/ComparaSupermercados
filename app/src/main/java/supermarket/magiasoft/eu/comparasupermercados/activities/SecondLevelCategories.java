@@ -5,10 +5,16 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
+
+import supermarket.magiasoft.eu.comparasupermercados.MainActivity;
 import supermarket.magiasoft.eu.comparasupermercados.R;
+import supermarket.magiasoft.eu.comparasupermercados.Utils;
 
 public class SecondLevelCategories extends ActionBarActivity {
 
@@ -29,8 +35,30 @@ public class SecondLevelCategories extends ActionBarActivity {
 
 
         secondLevelCategories.setAdapter(adapter);
-    }
+        secondLevelCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                final String category = (String) secondLevelCategories.getItemAtPosition(position); // e.g. "Frutas"
+
+                final List<String> categoriesUrl = Utils.getSecondLevelCategoriesLinks();
+
+                int pos = -1;
+                for (int i = 0; i < categoriesUrl.size(); i++){
+                    if (categoriesUrl.get(i).contains(category)){
+                        pos = i;
+                        break;
+                    }
+                }
+
+                if (pos != -1){
+                    final String url = categoriesUrl.get(pos);
+                    final List<String> thirldLevelCategories = Utils.listThirdLevelCategories(MainActivity.URL_EROSKI_BASE + url);
+                }
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

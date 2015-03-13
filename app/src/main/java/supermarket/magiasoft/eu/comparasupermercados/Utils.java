@@ -19,9 +19,9 @@ public class Utils {
     private static Element navmenu;
     private static Elements doblelinea;
     private static Document doc;
+    private static List<String> secondLevelCategoriesLinks;
 
     static public List<String> listMainCategories(final String url) {
-
         List<String> mainCategories = null;
         try {
             // need http protocol
@@ -45,9 +45,10 @@ public class Utils {
         return mainCategories;
     }
 
-    static public List<String> listSecondLevelCategories(){
+    static public List<String> listSecondLevelCategories() {
         boolean secondLevelFilled = false;
-        List<String> secondLevelCategories = new ArrayList<String>();
+        List<String> secondLevelCategoriesTitles = new ArrayList<String>();
+        secondLevelCategoriesLinks = new ArrayList<String>();
 
         for (int i = 0; i < doblelinea.size(); i++) {
             if (!secondLevelFilled) {
@@ -56,9 +57,10 @@ public class Utils {
                 //getElementsByAttributeValueContaining("href", "/supermercado/2059698-Alimentos-Frescos/");
 
                 for (int j = 0; j < categories.size(); j++) {
-                    final String secondLevelElement = categories.get(j).attr("title");
-                    secondLevelCategories.add(secondLevelElement);
-                    Log.d("secondLevelElement", secondLevelElement);
+                    final String secondLevelElementTitle = categories.get(j).attr("title");
+                    final String secondLevelElementLink = categories.get(j).attr("href");
+                    secondLevelCategoriesTitles.add(secondLevelElementTitle);
+                    secondLevelCategoriesLinks.add(secondLevelElementLink);
 
                     // TODO:
                     // Third level categories have to be fetched from URL_EROSKI_BASE +
@@ -70,7 +72,30 @@ public class Utils {
             }
         }
 
-        return secondLevelCategories;
+        return secondLevelCategoriesTitles;
+    }
+
+    public static List<String> getSecondLevelCategoriesLinks() {
+        return secondLevelCategoriesLinks;
+    }
+
+    static public List<String> listThirdLevelCategories(final String url) {
+        List<String> thirdLevelCategories = null;
+
+        new Thread() {
+            public void run() {
+                try {
+                    doc = Jsoup.connect(url).get();
+                    Element productlist_filters = doc.getElementsByClass("productlist_filters").get(0);
+
+                    Log.d("productlist_filters", "productlist_filters");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+
+        return null;
     }
 
 }

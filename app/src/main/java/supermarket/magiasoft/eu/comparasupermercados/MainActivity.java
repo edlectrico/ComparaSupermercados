@@ -20,8 +20,8 @@ import supermarket.magiasoft.eu.comparasupermercados.activities.MainCategories;
 
 public class MainActivity extends ActionBarActivity {
 
-    private static final String URL_EROSKI_BASE = "http://www.compraonline.grupoeroski.com/supermercado/";
-    private static final String URL_EROSKI_MAIN = "home.jsp";
+    public static final String URL_EROSKI_BASE = "http://www.compraonline.grupoeroski.com";
+    private static final String URL_EROSKI_MAIN = "/supermercado/home.jsp";
 
     private ImageButton buttonEroski;
     private ProgressDialog dialog;
