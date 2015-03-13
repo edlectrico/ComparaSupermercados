@@ -1,6 +1,8 @@
 package supermarket.magiasoft.eu.comparasupermercados;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,27 +22,47 @@ public class MainActivity extends ActionBarActivity {
     private static final String URL_EROSKI_MAIN = "home.jsp";
 
     private ImageButton buttonEroski;
+    private ProgressDialog dialog;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonEroski = (ImageButton) findViewById(R.id.eroskiButton);
+        intent = new Intent(this, MainCategories.class);
 
+        buttonEroski = (ImageButton) findViewById(R.id.eroskiButton);
         buttonEroski.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchEroski(v, URL_EROSKI_BASE + URL_EROSKI_MAIN);
+                showDialog();
+                new ProductCategoriesFetcher().execute(URL_EROSKI_BASE + URL_EROSKI_MAIN);
             }
         });
     }
 
-    public void launchEroski(View v, String url){
-        Utils.parseURL(url);
+    class ProductCategoriesFetcher extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... urls) {
+            Utils.parseURL(urls[0]);
 
-        startActivity(new Intent(this, MainCategories.class));
+            return "Executed";
+        }
+
+        protected void onPostExecute(String string) {
+            dialog.dismiss();
+            startActivity(intent);
+        }
     }
+
+    private void showDialog() {
+        dialog = ProgressDialog.show(MainActivity.this, "", getResources().getString(R.string.loading_message_dialog), true);
+        dialog.show();
+    }
+
+//    public void launchEroski(String url){
+//        Utils.parseURL(url);
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

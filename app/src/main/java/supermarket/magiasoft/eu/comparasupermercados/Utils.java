@@ -16,58 +16,53 @@ import java.util.List;
  */
 public class Utils {
 
-    static public void parseURL(final String url){
+    static public void parseURL(final String url) {
+        Document doc;
+        try {
 
-        new Thread(){
-            public void run(){
-                Document doc;
-                try {
+            // need http protocol
+            doc = Jsoup.connect(url).get();
 
-                    // need http protocol
-                    doc = Jsoup.connect(url).get();
+            // get page title
+            //String title = doc.title();
+            //System.out.println("title : " + title);
 
-                    // get page title
-                    //String title = doc.title();
-                    //System.out.println("title : " + title);
+            final Element element = doc.getElementsByClass("navmenu").get(0);
+            //Log.d("Element", element.toString());
 
-                    final Element element = doc.getElementsByClass("navmenu").get(0);
-                    //Log.d("Element", element.toString());
+            // get the main categories
+            final Elements elements = element.getElementsByClass("doblelinea");
+            //Log.d("Elements", elements.toString());
 
-                    // get the main categories
-                    final Elements elements = element.getElementsByClass("doblelinea");
-                    //Log.d("Elements", elements.toString());
+            List<String> mainCategories = new ArrayList<String>();
+            List<String> secondLevelCategories = new ArrayList<String>();
 
-                    List<String> mainCategories = new ArrayList<String>();
-                    List<String> secondLevelCategories = new ArrayList<String>();
+            boolean secondLevelFilled = false;
 
-                    boolean secondLevelFilled = false;
+            for (int i = 0; i < elements.size(); i++) {
+                final String mainCategory = doc.select("a[class=doblelinea]").get(i).attr("title");
+                mainCategories.add(mainCategory);
 
-                    for (int i = 0; i < elements.size(); i++){
-                        final String mainCategory = doc.select("a[class=doblelinea]").get(i).attr("title");
-                        mainCategories.add(mainCategory);
+                if (!secondLevelFilled) {
+                    Elements secondLevelElements = element.getElementsByAttributeValueContaining("href", "/supermercado/2059698-Alimentos-Frescos/");
 
-                        if (!secondLevelFilled){
-                            Elements secondLevelElements = element.getElementsByAttributeValueContaining("href", "/supermercado/2059698-Alimentos-Frescos/");
+                    for (int j = 1; j < secondLevelElements.size(); j++) {
+                        final String secondLevelElement = secondLevelElements.get(j).attr("title");
+                        secondLevelCategories.add(secondLevelElement);
+                        Log.d("secondLevelElement", secondLevelElement);
 
-                            for (int j = 1; j < secondLevelElements.size(); j++){
-                                final String secondLevelElement = secondLevelElements.get(j).attr("title");
-                                secondLevelCategories.add(secondLevelElement);
-                                Log.d("secondLevelElement", secondLevelElement);
-
-                                // TODO:
-                                // Third level categories have to be fetched from URL_EROSKI_BASE +
-                                // + Category's code + "/" Element's code + "/", for example
-                                // www.compraonline.grupoeroski.com/supermercado/2059698-Alimentos-Frescos/2059699-Frutas/
-                            }
-                        }
+                        // TODO:
+                        // Third level categories have to be fetched from URL_EROSKI_BASE +
+                        // + Category's code + "/" Element's code + "/", for example
+                        // www.compraonline.grupoeroski.com/supermercado/2059698-Alimentos-Frescos/2059699-Frutas/
                     }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
                 }
-
             }
-        }.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
