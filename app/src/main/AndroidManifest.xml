@@ -18,10 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".activities.MainCategories"
             android:label="@string/title_activity_main_categories" >
+        </activity>
+        <activity
+            android:name=".activities.SecondLevelCategories"
+            android:label="@string/title_activity_second_level_categories" >
         </activity>
     </application>
 

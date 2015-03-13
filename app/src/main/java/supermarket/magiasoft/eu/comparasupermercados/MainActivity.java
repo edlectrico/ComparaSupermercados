@@ -46,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
 
     class ProductCategoriesFetcher extends AsyncTask<String, Void, String> {
         protected String doInBackground(String... urls) {
-            final List<String> mainCategories = Utils.parseURL(urls[0]);
+            final List<String> mainCategories = Utils.listMainCategories(urls[0]);
             String[] categories = new String[mainCategories.size()];
 
             for (int i = 0; i < mainCategories.size(); i++){

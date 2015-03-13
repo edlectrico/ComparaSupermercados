@@ -11,7 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import supermarket.magiasoft.eu.comparasupermercados.R;
+import supermarket.magiasoft.eu.comparasupermercados.Utils;
 
 /**
  * Created by edlectrico on 11/03/15.
@@ -31,43 +34,33 @@ public class MainCategories extends ActionBarActivity {
         Intent intent = getIntent();
         final String[] categories = intent.getExtras().getStringArray("maincategories");
 
-        // Define a new Adapter
-        // First parameter - Context
-        // Second parameter - Layout for the row
-        // Third parameter - ID of the TextView to which the data is written
-        // Forth - the Array of data
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, android.R.id.text1, categories);
 
-
-        // Assign adapter to ListView
         mainCategories.setAdapter(adapter);
-
-        // ListView Item Click Listener
         mainCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
+                final String category = (String) mainCategories.getItemAtPosition(position); // e.g. "Alimentos Frescos"
 
-                // ListView Clicked item index
-                int itemPosition     = position;
+                if (category.startsWith("Alimentos")){
+                    final List<String> secondCategories = Utils.listSecondLevelCategories();
+                    String[] categories = new String[secondCategories.size()];
 
-                // ListView Clicked item value
-                String  itemValue    = (String) mainCategories.getItemAtPosition(position);
+                    for (int i = 0; i < secondCategories.size(); i++){
+                        categories[i] = secondCategories.get(i);
+                    }
 
-                // Show Alert
-                Toast.makeText(getApplicationContext(),
-                        "Position :"+itemPosition+"  ListItem : " +itemValue , Toast.LENGTH_LONG)
-                        .show();
+                    Intent secondLevelCategories = new Intent(MainCategories.this, SecondLevelCategories.class);
+                    secondLevelCategories.putExtra("secondlevelcategories", categories);
 
+                    startActivity(secondLevelCategories);
+                }
             }
-
         });
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
