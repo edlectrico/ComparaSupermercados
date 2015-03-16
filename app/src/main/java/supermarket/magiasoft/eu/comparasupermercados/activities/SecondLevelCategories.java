@@ -1,6 +1,8 @@
 package supermarket.magiasoft.eu.comparasupermercados.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +24,11 @@ import supermarket.magiasoft.eu.comparasupermercados.Utils;
 public class SecondLevelCategories extends ActionBarActivity {
 
     private ListView secondLevelCategories;
+    private Intent thirdLevelCategories;
+
+    // This dialog assures a second thread to fetch the corresponding
+    // third level categories from the required web page
+    private ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,40 +45,55 @@ public class SecondLevelCategories extends ActionBarActivity {
 
 
         secondLevelCategories.setAdapter(adapter);
-        secondLevelCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
+        secondLevelCategories.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                final String category = (String) secondLevelCategories.getItemAtPosition(position); // e.g. "Frutas"
-
-                final List<String> categoriesUrl = Utils.getSecondLevelCategoriesLinks();
-
-                int pos = -1;
-                for (int i = 0; i < categoriesUrl.size(); i++){
-                    if (categoriesUrl.get(i).contains(category)){
-                        pos = i;
-                        break;
-                    }
-                }
-
-                if (pos != -1){
-                    final String url = categoriesUrl.get(pos);
-                    final List<String> thirldLevelCategories = Utils.listThirdLevelCategories(MainActivity.URL_EROSKI_BASE + url);
-
-                    String[] categories = new String[thirldLevelCategories.size()];
-
-                    for (int i = 0; i < thirldLevelCategories.size(); i++){
-                        categories[i] = thirldLevelCategories.get(i);
-                    }
-
-                    Intent thirdLevelCategories = new Intent(SecondLevelCategories.this, ThirdLevelCategories.class);
-                    thirdLevelCategories.putExtra("thirdlevelcategories", categories);
-
-                    startActivity(thirdLevelCategories);
-                }
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                showDialog();
+                new ThirdLevelCategoriesFetcher().execute(String.valueOf(position));
             }
         });
+    }
+
+    private void showDialog() {
+        dialog = ProgressDialog.show(SecondLevelCategories.this, "", getResources().getString(R.string.loading_message_dialog), true);
+        dialog.show();
+    }
+
+    class ThirdLevelCategoriesFetcher extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... position) {
+            final String category = (String) secondLevelCategories.getItemAtPosition(Integer.valueOf(position[0])); // e.g. "Frutas"
+
+            final List<String> categoriesUrl = Utils.getSecondLevelCategoriesLinks();
+
+            int pos = -1;
+            for (int i = 0; i < categoriesUrl.size(); i++) {
+                if (categoriesUrl.get(i).contains(category)) {
+                    pos = i;
+                    break;
+                }
+            }
+
+            if (pos != -1) {
+                final String url = categoriesUrl.get(pos);
+                final List<String> thirldLevelCategories = Utils.listThirdLevelCategories(MainActivity.URL_EROSKI_BASE + url);
+
+                String[] categories = new String[thirldLevelCategories.size()];
+
+                for (int i = 0; i < thirldLevelCategories.size(); i++) {
+                    categories[i] = thirldLevelCategories.get(i);
+                }
+
+                thirdLevelCategories = new Intent(SecondLevelCategories.this, ThirdLevelCategories.class);
+                thirdLevelCategories.putExtra("thirdlevelcategories", categories);
+            }
+
+            return "Executed";
+        }
+
+        protected void onPostExecute(String string) {
+            dialog.dismiss();
+            startActivity(thirdLevelCategories);
+        }
     }
 
     @Override
@@ -95,4 +117,5 @@ public class SecondLevelCategories extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

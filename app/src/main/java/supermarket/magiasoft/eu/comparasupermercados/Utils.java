@@ -75,32 +75,20 @@ public class Utils {
     static public List<String> listThirdLevelCategories(final String url) {
         final List<String> thirdLevel = new ArrayList<String>();
 
-        Thread t = new Thread() {
-            public void run() {
-                try {
-                    thirdLevelDoc = Jsoup.connect(url).get();
-                    Element productlist_filters = thirdLevelDoc.getElementsByClass("productlist_filters").get(0);
-                    final Elements thirdLevelCategories = productlist_filters.getElementsByAttributeValueContaining("for", "chk");
-
-                    for (Element e : thirdLevelCategories){
-                        final String level = e.toString().substring(e.toString().indexOf(">") + 1, e.toString().lastIndexOf("<"));
-                        thirdLevel.add(level);
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        t.start();
-
         try {
-            // Wait for the thread to finish filling thirdLevel
-            t.join();
-        } catch (InterruptedException e) {
+            thirdLevelDoc = Jsoup.connect(url).get();
+            Element productlist_filters = thirdLevelDoc.getElementsByClass("productlist_filters").get(0);
+            final Elements thirdLevelCategories = productlist_filters.getElementsByAttributeValueContaining("for", "chk");
+
+            for (Element e : thirdLevelCategories){
+                final String level = e.toString().substring(e.toString().indexOf(">") + 1, e.toString().lastIndexOf("<"));
+                thirdLevel.add(level);
+            }
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
 
         return thirdLevel;
     }
