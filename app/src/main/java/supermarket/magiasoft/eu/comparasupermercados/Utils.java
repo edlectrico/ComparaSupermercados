@@ -16,8 +16,7 @@ public class Utils {
 
     private static Element navmenu;
     private static Elements doblelinea;
-    private static Document mainDoc;
-    private static Document thirdLevelDoc;
+    private static Document mainDoc, thirdLevelDoc;
     private static List<String> secondLevelCategoriesLinks;
 
     static public List<String> listMainCategories(final String url) {

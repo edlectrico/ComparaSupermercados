@@ -1,4 +1,4 @@
-package supermarket.magiasoft.eu.comparasupermercados;
+package supermarket.magiasoft.eu.comparasupermercados.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -12,7 +12,8 @@ import android.widget.ImageButton;
 
 import java.util.List;
 
-import supermarket.magiasoft.eu.comparasupermercados.activities.MainCategories;
+import supermarket.magiasoft.eu.comparasupermercados.R;
+import supermarket.magiasoft.eu.comparasupermercados.Utils;
 
 /**
  * Created by edlectrico on 11/03/15.

@@ -14,7 +14,6 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import supermarket.magiasoft.eu.comparasupermercados.MainActivity;
 import supermarket.magiasoft.eu.comparasupermercados.R;
 import supermarket.magiasoft.eu.comparasupermercados.Utils;
 
