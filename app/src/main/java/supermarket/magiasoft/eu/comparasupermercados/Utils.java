@@ -1,7 +1,5 @@
 package supermarket.magiasoft.eu.comparasupermercados;
 
-import android.util.Log;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,15 +16,16 @@ public class Utils {
 
     private static Element navmenu;
     private static Elements doblelinea;
-    private static Document doc;
+    private static Document mainDoc;
+    private static Document thirdLevelDoc;
     private static List<String> secondLevelCategoriesLinks;
 
     static public List<String> listMainCategories(final String url) {
         List<String> mainCategories = null;
         try {
             // need http protocol
-            doc = Jsoup.connect(url).get();
-            navmenu = doc.getElementsByClass("navmenu").get(0);
+            mainDoc = Jsoup.connect(url).get();
+            navmenu = mainDoc.getElementsByClass("navmenu").get(0);
 
             // get the main categories
             doblelinea = navmenu.getElementsByClass("doblelinea");
@@ -34,7 +33,7 @@ public class Utils {
             mainCategories = new ArrayList<String>();
 
             for (int i = 0; i < doblelinea.size(); i++) {
-                final String mainCategory = doc.select("a[class=doblelinea]").get(i).attr("title");
+                final String mainCategory = mainDoc.select("a[class=doblelinea]").get(i).attr("title");
                 mainCategories.add(mainCategory);
             }
 
@@ -80,22 +79,36 @@ public class Utils {
     }
 
     static public List<String> listThirdLevelCategories(final String url) {
-        List<String> thirdLevelCategories = null;
+        final List<String> thirdLevel = new ArrayList<String>();
 
-        new Thread() {
+        Thread t = new Thread() {
             public void run() {
                 try {
-                    doc = Jsoup.connect(url).get();
-                    Element productlist_filters = doc.getElementsByClass("productlist_filters").get(0);
+                    thirdLevelDoc = Jsoup.connect(url).get();
+                    Element productlist_filters = thirdLevelDoc.getElementsByClass("productlist_filters").get(0);
+                    final Elements thirdLevelCategories = productlist_filters.getElementsByAttributeValueContaining("for", "chk");
 
-                    Log.d("productlist_filters", "productlist_filters");
+                    for (Element e : thirdLevelCategories){
+                        final String level = e.toString().substring(e.toString().indexOf(">") + 1, e.toString().lastIndexOf("<"));
+                        thirdLevel.add(level);
+                    }
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }.start();
+        };
 
-        return null;
+        t.start();
+
+        try {
+            // Wait for the thread to finish filling thirdLevel
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return thirdLevel;
     }
 
 }

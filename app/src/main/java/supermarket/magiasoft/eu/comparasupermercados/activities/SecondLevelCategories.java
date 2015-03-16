@@ -16,6 +16,9 @@ import supermarket.magiasoft.eu.comparasupermercados.MainActivity;
 import supermarket.magiasoft.eu.comparasupermercados.R;
 import supermarket.magiasoft.eu.comparasupermercados.Utils;
 
+/**
+ * Created by edlectrico on 11/03/15.
+ */
 public class SecondLevelCategories extends ActionBarActivity {
 
     private ListView secondLevelCategories;
@@ -23,9 +26,9 @@ public class SecondLevelCategories extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_level_categories);
+        setContentView(R.layout.categories);
 
-        secondLevelCategories = (ListView) findViewById(R.id.list_second_level_categories);
+        secondLevelCategories = (ListView) findViewById(R.id.list_categories);
 
         Intent intent = getIntent();
         final String[] secondCategories = intent.getExtras().getStringArray("secondlevelcategories");
@@ -55,6 +58,17 @@ public class SecondLevelCategories extends ActionBarActivity {
                 if (pos != -1){
                     final String url = categoriesUrl.get(pos);
                     final List<String> thirldLevelCategories = Utils.listThirdLevelCategories(MainActivity.URL_EROSKI_BASE + url);
+
+                    String[] categories = new String[thirldLevelCategories.size()];
+
+                    for (int i = 0; i < thirldLevelCategories.size(); i++){
+                        categories[i] = thirldLevelCategories.get(i);
+                    }
+
+                    Intent thirdLevelCategories = new Intent(SecondLevelCategories.this, ThirdLevelCategories.class);
+                    thirdLevelCategories.putExtra("thirdlevelcategories", categories);
+
+                    startActivity(thirdLevelCategories);
                 }
             }
         });

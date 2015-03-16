@@ -26,6 +26,10 @@
             android:name=".activities.SecondLevelCategories"
             android:label="@string/title_activity_second_level_categories" >
         </activity>
+        <activity
+            android:name=".activities.ThirdLevelCategories"
+            android:label="@string/title_activity_third_level_categories" >
+        </activity>
     </application>
 
 </manifest>

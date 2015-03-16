@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">ComparaSupermercados</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="test">Test String</string>
+
     <string name="eroski">Eroski</string>
-    <string name="title_activity_main_categories">MainCategories</string>
-    <string name="loading_message_dialog">Loading... Please wait</string>
-    <string name="title_activity_second_level_categories">SecondLevelCategories</string>
     <string name="bm">Supermercados BM</string>
 
+    <string name="loading_message_dialog">Loading... Please wait</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="test">Test String</string>
+
+    <string name="title_activity_main_categories">MainCategories</string>
+    <string name="title_activity_second_level_categories">SecondLevelCategories</string>
+    <string name="title_activity_third_level_categories">ThirdLevelCategories</string>
 </resources>

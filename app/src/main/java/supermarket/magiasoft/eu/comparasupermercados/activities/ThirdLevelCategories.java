@@ -1,8 +1,8 @@
 package supermarket.magiasoft.eu.comparasupermercados.activities;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,59 +12,61 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import supermarket.magiasoft.eu.comparasupermercados.MainActivity;
 import supermarket.magiasoft.eu.comparasupermercados.R;
 import supermarket.magiasoft.eu.comparasupermercados.Utils;
 
 /**
- * Created by edlectrico on 11/03/15.
+ * Created by edlectrico on 16/03/15.
  */
+public class ThirdLevelCategories extends ActionBarActivity {
 
-public class MainCategories extends ActionBarActivity {
-
-    private ListView mainCategories;
+    private ListView thirdLevelCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.categories);
 
-        mainCategories = (ListView) findViewById(R.id.list_categories);
+        thirdLevelCategories = (ListView) findViewById(R.id.list_categories);
 
         Intent intent = getIntent();
-        final String[] categories = intent.getExtras().getStringArray("maincategories");
+        final String[] thirdCategories = intent.getExtras().getStringArray("thirdlevelcategories");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, categories);
+                android.R.layout.simple_list_item_1, android.R.id.text1, thirdCategories);
 
-        mainCategories.setAdapter(adapter);
-        mainCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        thirdLevelCategories.setAdapter(adapter);
+        /*thirdLevelCategories.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                final String category = (String) mainCategories.getItemAtPosition(position); // e.g. "Alimentos Frescos"
+                final String category = (String) thirdLevelCategories.getItemAtPosition(position); // e.g. "Naranjas..."
 
-                if (category.startsWith("Alimentos")){
-                    final List<String> secondCategories = Utils.listSecondLevelCategories();
-                    String[] categories = new String[secondCategories.size()];
+                final List<String> categoriesUrl = Utils.getSecondLevelCategoriesLinks();
 
-                    for (int i = 0; i < secondCategories.size(); i++){
-                        categories[i] = secondCategories.get(i);
+                int pos = -1;
+                for (int i = 0; i < categoriesUrl.size(); i++) {
+                    if (categoriesUrl.get(i).contains(category)) {
+                        pos = i;
+                        break;
                     }
+                }
 
-                    Intent secondLevelCategories = new Intent(MainCategories.this, SecondLevelCategories.class);
-                    secondLevelCategories.putExtra("secondlevelcategories", categories);
-
-                    startActivity(secondLevelCategories);
+                if (pos != -1) {
+                    final String url = categoriesUrl.get(pos);
+                    final List<String> thirldLevelCategories = Utils.listThirdLevelCategories(MainActivity.URL_EROSKI_BASE + url);
                 }
             }
-        });
+        });*/
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main_categories, menu);
+        getMenuInflater().inflate(R.menu.menu_third_level_categories, menu);
         return true;
     }
 
