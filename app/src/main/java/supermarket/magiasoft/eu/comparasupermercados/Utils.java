@@ -53,18 +53,12 @@ public class Utils {
             if (!secondLevelFilled) {
                 Elements secondLevelElements = navmenu.getElementsByClass("secondlevel");
                 Elements categories = secondLevelElements.get(0).getElementsByAttributeValueContaining("href", "/supermercado/2059698-Alimentos-Frescos/");
-                //getElementsByAttributeValueContaining("href", "/supermercado/2059698-Alimentos-Frescos/");
 
                 for (int j = 0; j < categories.size(); j++) {
                     final String secondLevelElementTitle = categories.get(j).attr("title");
                     final String secondLevelElementLink = categories.get(j).attr("href");
                     secondLevelCategoriesTitles.add(secondLevelElementTitle);
                     secondLevelCategoriesLinks.add(secondLevelElementLink);
-
-                    // TODO:
-                    // Third level categories have to be fetched from URL_EROSKI_BASE +
-                    // + Category's code + "/" Element's code + "/", for example
-                    // www.compraonline.grupoeroski.com/supermercado/2059698-Alimentos-Frescos/2059699-Frutas/
                 }
                 secondLevelFilled = true;
                 // TODO: break?
